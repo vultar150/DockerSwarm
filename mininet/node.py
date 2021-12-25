@@ -1294,7 +1294,6 @@ class DockerSwarm(Docker):
         skwargs = { 'name' : service_name, 
                     'mode' : mode,
                     'hostname'   : name,
-                    # 'publish list' : '4545:80',
                     # 'open_stdin' : True,
                     'cap_add'    : ['net_admin'] }
         
