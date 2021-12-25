@@ -1298,7 +1298,7 @@ class DockerSwarm(Docker):
                     'cap_add'    : ['net_admin'] }
         
         self.service = self.d_client.services.create( dimage, command=dcmd, **skwargs )
-        sleep(3)
+        sleep(5)
         
         self.did = self.d_client.containers.list()[0].id
         self.dcinfo = self.dcli.inspect_container(self.did)
