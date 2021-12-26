@@ -1310,52 +1310,6 @@ class DockerSwarm(Docker):
         self.d_client.swarm.leave(True)
 
 
-
-# class DockerSwarm(Docker):
-#     def __init__(self, name, dimage=None, dcmd=None, build_params={}, **kwargs):
-#         self.dimage = dimage
-#         self.dnameprefix = "SwarmTask"
-#         self.dcmd = dcmd if dcmd is not None else "/bin/bash"
-#         self.dc = None 
-#         self.dcinfo = None
-#         self.did = None 
-#         defaults = {'cap_add': ['net_admin'], 'numRep': 1}
-#         defaults.update(kwargs)
-
-#         if 'net_admin' not in defaults['cap_add']:
-#             defaults['cap_add'] += ['net_admin']
-
-
-#         self.cap_add = defaults['cap_add']
-
-#         self.client = docker.from_env()
-#         self.dcli = self.client.api
-#         self.dcli.leave_swarm(True);
-
-#         spec = self.dcli.create_swarm_spec(snapshot_interval=5000, log_entries_for_slow_followers=1200)
-#         response = self.dcli.init_swarm(swarm_spec=spec)
-
-#         self.numRep = defaults["numRep"]
-#         self.NameService = self.dnameprefix + "_" + name
-
-#         task = docker.types.TaskTemplate(docker.types.ContainerSpec(self.dimage, command=self.dcmd, hostname=name, tty=True, open_stdin=True, cap_add=self.cap_add))
-#         response = self.dcli.create_service(task, self.NameService, mode=docker.types.ServiceMode("replicated", self.numRep))
-#         self.IDservice = response["ID"];
-
-#         sleep(3)
-#         self.did = self.client.containers.list()[0].id
-#         self.dcinfo = self.dcli.inspect_container(self.did)
-
-#         Host.__init__(self, name, **kwargs)
-
-#         self.master = None
-#         self.slave = None
-
-#     def terminate(self):
-#         self.dcli.remove_service(self.IDservice)
-        
-   
-
 class CPULimitedHost( Host ):
 
     "CPU limited host"
